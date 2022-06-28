@@ -1,3 +1,18 @@
+## Important Note
+
+This serverside rendering demo has been added a prerendering feature from prerender.io which prerenders all pages and serve static HTML files to GoogleBot, or Facebook Crawlers. This project has been also implemented react-helmet OpenGraph Metatags so that link previews are possible on Facebook or other Social Media Platforms. 
+
+To get started, Run ```yarn install``` in project directory and then go to server folder and run ``yarn install`` again. Then run ```yarn start``` to build and render the web app thru the server. When deploying to heroku, we need to put 'prerender-node' and 'express' as dependencies in the package.json that is in the home directory, because heroku will only install dependencies based on this package.json, not the one in the server folder. 
+
+Note that we need to replace the code, with the actual code that was given from prerender.io dashboard, because each user has different API key.
+```
+app.use(
+	require("prerender-node").set("prerenderToken", "OrTP5FVFQWpGvIe6xkcF")
+);
+```
+
+
+
 ## To run this project execute following commands in order
 
 ```javascript
