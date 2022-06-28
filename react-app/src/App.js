@@ -1,37 +1,22 @@
 import React from "react";
-import axios from "axios";
 import "./styles.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import Profile from "./Profile";
 
-export default class App extends React.Component {
-  state = {
-    users: [],
-  };
-  componentDidMount() {
-    axios.get("/users.json").then((response) => {
-      this.setState({ users: response.data });
-    });
-  }
-
-  render() {
-    const { users } = this.state;
-    return (
-      <div>
-        <ul className="users">
-          {users.map((user) => (
-            <li className="user">
-              <p>
-                <strong>Name:</strong> {user.name}
-              </p>
-              <p>
-                <strong>Email:</strong> {user.email}
-              </p>
-              <p>
-                <strong>City:</strong> {user.address.city}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
+export default function App() {
+	return (
+		<div>
+			<BrowserRouter>
+				<Routes>
+					<Route exact path="/" element={<Home />} />
+					<Route
+						exact
+						path="/champions/:userId"
+						element={<Profile />}
+					/>
+				</Routes>
+			</BrowserRouter>
+		</div>
+	);
 }
